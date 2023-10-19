@@ -34,7 +34,7 @@ class StatusWrapper {
                     foundDetails = [...foundDetails, unpacked];
                 }
             } catch (e) {
-                // ignore not found we're only searching for a specific type
+                continue;
             }
         }
 

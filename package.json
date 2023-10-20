@@ -1,0 +1,26 @@
+{
+  "name": "@nitric/grpc-error-status",
+  "description": "A typescript library for handling GRPCs richer error model.",
+  "main": "lib/index.js",
+  "repository": "https://github.com/nitrictech/grpc-error-status.git",
+  "author": "Tim Holm <tim.holm@nitric.io>",
+  "license": "Apache-2.0",
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "gen:protos": "grpc_tools_node_protoc --ts_out=service=grpc-node,mode=grpc-js:./src --js_out=import_style=commonjs,binary:./src --grpc_out=grpc_js:./src -I ./protos ./protos/**/*/*.proto"
+  },
+  "dependencies": {
+    "google-protobuf": "^3.14.0"
+  },
+  "peerDependencies": {
+    "@grpc/grpc-js": "^1.8.1"
+  },
+  "devDependencies": {
+    "@grpc/grpc-js": "^1.8.1",
+    "@types/google-protobuf": "^3.15.6",
+    "grpc-tools": "^1.11.3",
+    "ts-protoc-gen": "^0.15.0",
+    "typescript": "^5.2.2"
+  }
+}

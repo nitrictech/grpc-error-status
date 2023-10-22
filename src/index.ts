@@ -47,15 +47,19 @@ interface BinaryDeserializer<T extends Message> {
 }
 
 export const parse = (e: ServiceError): StatusWrapper | undefined => {
-    const detailsMap = e.metadata.getMap();
+    if (e.metadata) {
+        const detailsMap = e.metadata.getMap();
 
-    const statusDetailsBin = detailsMap['grpc-status-details-bin'];
-
-    if (!statusDetailsBin) {
-        return
+        const statusDetailsBin = detailsMap['grpc-status-details-bin'];
+    
+        if (!statusDetailsBin) {
+            return
+        }
+    
+        const status = Status.deserializeBinary(statusDetailsBin as Buffer);
+    
+        return new StatusWrapper(status);
     }
 
-    const status = Status.deserializeBinary(statusDetailsBin as Buffer);
-
-    return new StatusWrapper(status);
+    return
 }
